@@ -1,0 +1,215 @@
+
+:root {
+    --background: #F5F6F8;
+    --surface: #FFFFFF;
+    --text: #252B35;
+    --muted: #667085;
+    --accent: #425C83;
+    --accent-light: #EAF0F8;
+    --border: #E2E6EC;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: var(--background);
+    color: var(--text);
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+}
+
+header {
+    background: var(--surface);
+    text-align: center;
+    padding: 35px 20px 28px;
+    border-bottom: 1px solid var(--border);
+}
+
+header h1 {
+    font-size: 25px;
+    letter-spacing: 1px;
+    margin: 0 0 10px;
+}
+
+header h2 {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--muted);
+    margin: 0 0 12px;
+}
+
+header p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.labs-navigation {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 20px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+}
+
+.labs-navigation a {
+    padding: 11px 15px;
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 13px;
+    transition: 0.2s;
+}
+
+.labs-navigation a:hover {
+    background: var(--accent-light);
+    border-color: var(--accent);
+}
+
+.labs-navigation a:first-child {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+}
+
+.report-layout {
+    max-width: 1450px;
+    margin: 35px auto;
+    padding: 0 25px;
+    display: grid;
+    grid-template-columns: 275px minmax(0, 1fr);
+    gap: 25px;
+    align-items: start;
+}
+
+aside {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 22px;
+    position: sticky;
+    top: 20px;
+}
+
+aside h3 {
+    font-size: 16px;
+    margin: 0 0 20px;
+}
+
+.side-navigation {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.side-navigation a {
+    padding: 11px 13px;
+    border-radius: 6px;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.side-navigation a:hover {
+    background: var(--accent-light);
+    color: var(--accent);
+}
+
+main {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+main section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 30px 35px;
+    scroll-margin-top: 25px;
+}
+
+main section h2 {
+    font-size: 21px;
+    margin: 0 0 18px;
+    padding-bottom: 13px;
+    border-bottom: 1px solid var(--border);
+}
+
+main section p {
+    color: var(--muted);
+    font-size: 15px;
+}
+
+main section ul,
+main section ol {
+    padding-left: 25px;
+}
+
+main section li {
+    margin-bottom: 8px;
+}
+
+main section a {
+    color: var(--accent);
+}
+
+pre {
+    max-width: 100%;
+    overflow-x: auto;
+    background: #F3F5F8;
+    padding: 20px;
+    border-radius: 7px;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+code {
+    font-family: Consolas, monospace;
+}
+
+.report-image {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+}
+
+@media (max-width: 850px) {
+    .report-layout {
+        grid-template-columns: 1fr;
+        padding: 0 15px;
+    }
+
+    aside {
+        position: static;
+    }
+
+    main section {
+        padding: 25px 20px;
+    }
+}
+
+.student-photo {
+    display: block;
+    width: 115px;
+    height: 145px;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 8px;
+    border: 2px solid #E2E6EC;
+    margin: 0 auto 18px;
+}
+
+
+
