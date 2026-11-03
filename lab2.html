@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Лабораторна робота №2 — CSS | Sillage · ІП-44</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="report-header">
+        <div class="header-text">
+            <h1>ЗВІТИ З ЛАБОРАТОРНИХ РОБІТ</h1>
+            <h2>З дисципліни «Веб-орієнтовані технології. Frontend розробка»</h2>
+            <p><strong>Виконавиця:</strong> студентка групи ІП-44 Дроздова Анастасія</p>
+        </div>
+        <img src="images/student.jpg" alt="Фото студентки Дроздової Анастасії"
+             class="student-photo" width="100" height="125">
+    </header>
+    <nav class="labs-navigation">
+        <a href="index.html#lab1">Лабораторна №1</a>
+        <a href="lab2.html" aria-current="page">Лабораторна №2</a>
+        <a href="index.html#lab3">Лабораторна №3</a>
+        <a href="index.html#lab4">Лабораторна №4</a>
+        <a href="index.html#lab5">Лабораторна №5</a>
+        <a href="index.html#lab6">Лабораторна №6</a>
+        <a href="index.html#lab7">Лабораторна №7</a>
+        <a href="index.html#lab8">Лабораторна №8</a>
+        <a href="index.html#lab9">Лабораторна №9</a>
+    </nav>
+<div class="report-layout" id="lab2">
+<aside><h3>Лабораторна робота №2</h3><nav class="side-navigation" aria-label="Розділи лабораторної роботи №2"><a href="#lab2-topic">Тема, мета, посилання</a>
+<a href="#lab2-connection">Способи підключення стилів</a>
+<a href="#lab2-tags">Селектори тегу</a>
+<a href="#lab2-classes">Селектори класу</a>
+<a href="#lab2-id">Селектори ідентифікаторів</a>
+<a href="#lab2-other">Інші селектори</a>
+<a href="#lab2-formatting">CSS: Шрифти, Текст, Таблиці, Фон, Контур, Списки</a>
+<a href="#lab2-layout">Оформлення головної сторінки</a>
+<a href="#lab2-questions">Контрольні питання</a>
+<a href="#lab2-conclusion">Висновки</a></nav></aside>
+<main>
+<section id="lab2-topic"><h2>Тема, мета та місце розташування</h2>
+<p class="report-label">Лабораторна робота №2 · Sillage</p>
+<p><strong>Тема:</strong> Каскадні таблиці стилів. Селектори тегу, класу, ідентифікатора. Стильове оформлення текстових елементів в HTML-документах.</p>
+<p><strong>Мета:</strong> Набути практичних навичок використання CSS-селекторів, оформлення шрифтів, тексту, фону, контурів, таблиць і багаторівневих списків; закріпити роботу із зовнішніми та внутрішніми відступами.</p>
+<p><strong>Об’єкт роботи:</strong> навчальний сайт парфумерної енциклопедії Sillage, створений засобами HTML5 і CSS3.</p>
+<ul>
+<li><a href="https://github.com/am1ata7/IP-44-appWEB-DrozdovaAnastasiia-FIOT2026">Репозиторій Sillage</a> · <a href="https://am1ata7.github.io/IP-44-appWEB-DrozdovaAnastasiia-FIOT2026/">Сторінка Sillage</a></li>
+<li><a href="https://github.com/am1ata7/IP-44_appRECORD-DrozdovaAnastasiia-FIOT-2026">Репозиторій звіту</a> · <a href="https://am1ata7.github.io/IP-44_appRECORD-DrozdovaAnastasiia-FIOT-2026/lab2.html">Сторінка звіту №2</a></li>
+</ul>
+<p>Приклади нижче збережено разом зі звітом: вони не залежать від подальших змін головної сторінки Sillage.</p>
+</section>
+<section id="lab2-connection"><h2>Способи підключення стилів</h2>
+<p>У <code>index.html</code> та <code>about.html</code> використано зовнішню таблицю стилів. Обидві сторінки отримують спільне оформлення з <code>style.css</code>.</p><pre><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;</code></pre><p>На початку CSS-файлу правило <code>@import</code> підключає шрифти Cormorant Garamond та Inter:</p><pre><code>@import url(&#x27;https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&amp;family=Inter:wght@400;500;600&amp;display=swap&#x27;);</code></pre><p>Інші способи: внутрішня таблиця стилів у тегу <code>&lt;style&gt;</code> та вбудовані стилі в атрибуті <code>style</code>. У Sillage для оформлення сторінок ці два способи не застосовуються.</p>
+</section>
+<section id="lab2-tags"><h2>Селектори тегу</h2>
+<p>Селектор тегу задає оформлення всім елементам відповідного типу. Правила <code>table</code>, <code>caption</code>, <code>th</code> і <code>td</code> оформлюють таблицю порівняння ароматів. Кома у <code>th, td</code> об’єднує два селектори.</p><h3>HTML</h3><pre><code>&lt;table&gt;
+                    &lt;caption&gt;Popular fragrance comparison&lt;/caption&gt;
+                    &lt;thead&gt;
+                        &lt;tr&gt;
+                            &lt;th scope=&quot;col&quot;&gt;Fragrance&lt;/th&gt;
+                            &lt;th scope=&quot;col&quot;&gt;Brand&lt;/th&gt;
+                            &lt;th scope=&quot;col&quot;&gt;Family&lt;/th&gt;
+                            &lt;th scope=&quot;col&quot;&gt;Character&lt;/th&gt;
+                        &lt;/tr&gt;
+                    &lt;/thead&gt;
+                    &lt;tbody&gt;
+                        &lt;tr&gt;
+                            &lt;td&gt;Coco Mademoiselle&lt;/td&gt;
+                            &lt;td&gt;Chanel&lt;/td&gt;
+                            &lt;td&gt;Amber Floral&lt;/td&gt;
+                            &lt;td&gt;Elegant, fresh&lt;/td&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt;
+                            &lt;td&gt;J`adore&lt;/td&gt;
+                            &lt;td&gt;Dior&lt;/td&gt;
+                            &lt;td&gt;Floral Fruity&lt;/td&gt;
+                            &lt;td&gt;Warm, sweet&lt;/td&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt;
+                            &lt;td&gt;Libre&lt;/td&gt;
+                            &lt;td&gt;Yves Saint Laurent&lt;/td&gt;
+                            &lt;td&gt;Amber Fougère&lt;/td&gt;
+                            &lt;td&gt;Floral, aromatic&lt;/td&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt;
+                            &lt;td&gt;Baccarat Rouge 540&lt;/td&gt;
+                            &lt;td&gt;Maison Francis Kurkdjian&lt;/td&gt;
+                            &lt;td&gt;Amber Floral&lt;/td&gt;
+                            &lt;td&gt;Woody, amber&lt;/td&gt;
+                        &lt;/tr&gt;
+                    &lt;/tbody&gt;
+                &lt;/table&gt;</code></pre><h3>CSS</h3><pre><code>table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+caption {
+    text-align: left;
+    margin-bottom: 15px;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+th, td {
+    text-align: left;
+    padding: 20px;
+    border-bottom: 1px solid #E8E2DB;
+    font-size: 14px;
+}
+
+th {
+    background: #EEE8E1;
+    font-weight: 600;
+}</code></pre><figure class="example-result">
+<img class="report-image" src="images/lab2/tags.png" alt="Результат оформлення Sillage: tags" loading="lazy">
+<figcaption>Таблиця порівняння ароматів — приклад із поточного Sillage, відтворений у браузері. <a href="examples/lab2/tags.html" target="_blank" rel="noopener">Відкрити окремо ↗</a></figcaption>
+</figure>
+</section>
+<section id="lab2-classes"><h2>Селектори класу</h2>
+<p>Клас можна призначити кільком елементам. Клас <code>perfume-card</code> повторно використовується для всіх карток каталогу; вкладені елементи мають власні правила.</p><h3>HTML</h3><pre><code>&lt;article class=&quot;perfume-card&quot;&gt;
+                    &lt;div class=&quot;perfume-image&quot;&gt;
+                        &lt;img src=&quot;images/chanel-coco-mademoiselle.jpg&quot;
+                        alt=&quot;Chanel Coco Mademoiselle perfume&quot;&gt;
+                    &lt;/div&gt;
+                    &lt;h3&gt;Coco Mademoiselle&lt;/h3&gt;
+                    &lt;p class=&quot;brand&quot;&gt;Chanel&lt;/p&gt;
+                    &lt;p class=&quot;family-name&quot;&gt;Amber Floral&lt;/p&gt;
+                &lt;/article&gt;</code></pre><h3>CSS</h3><pre><code>.perfume-card {
+    background: white;
+    border-radius: 8px;
+    padding: 15px;
+}
+
+.perfume-image {
+    height: 285px;
+    background: #FFFF;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.perfume-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.perfume-card h3 {
+    font-size: 17px;
+    font-weight: 500;
+    margin: 16px 0 8px;
+}
+
+.brand {
+    font-size: 14px;
+    color: var(--muted);
+    margin: 0 0 10px;
+}
+
+.family-name {
+    font-size: 12px;
+    color: var(--accent);
+    margin: 0 0 10px;
+}</code></pre><figure class="example-result">
+<img class="report-image" src="images/lab2/classes.png" alt="Результат оформлення Sillage: classes" loading="lazy">
+<figcaption>Картка аромату — приклад із поточного Sillage, відтворений у браузері. <a href="examples/lab2/classes.html" target="_blank" rel="noopener">Відкрити окремо ↗</a></figcaption>
+</figure>
+</section>
+<section id="lab2-id"><h2>Селектори ідентифікаторів</h2>
+<p>Ідентифікатор має бути унікальним у межах документа. Селектор <code>#sillage-edit</code> додає верхню межу редакційному розділу. Його сітку й картки оформлюють класи.</p><h3>HTML</h3><pre><code>&lt;section class=&quot;sillage-edit&quot; id=&quot;sillage-edit&quot;&gt;
+            &lt;div class=&quot;section-heading&quot;&gt;
+                &lt;h2&gt;The Sillage Edit&lt;/h2&gt;
+            &lt;/div&gt;
+            &lt;p class=&quot;edit-intro&quot;&gt;A little inspiration for your next fragrance discovery.&lt;/p&gt;
+
+            &lt;div class=&quot;edit-grid&quot;&gt;
+                &lt;article class=&quot;edit-card&quot;&gt;
+                    &lt;img src=&quot;images/families.webp&quot;
+                         alt=&quot;Wood, flowers, amber and citrus representing fragrance families&quot;
+                         width=&quot;1500&quot; height=&quot;1000&quot; loading=&quot;lazy&quot;&gt;
+                    &lt;div class=&quot;edit-content&quot;&gt;
+                        &lt;p class=&quot;edit-category&quot;&gt;FRAGRANCE GUIDE&lt;/p&gt;
+                        &lt;h3&gt;Explore Fragrance Families&lt;/h3&gt;
+                        &lt;p&gt;From floral to woody, discover the families that help describe a fragrance.&lt;/p&gt;
+                        &lt;a href=&quot;#notes&quot;&gt;Explore the families →&lt;/a&gt;
+                    &lt;/div&gt;
+                &lt;/article&gt;
+
+                &lt;article class=&quot;edit-card&quot;&gt;
+                    &lt;img class=&quot;signature-image&quot; src=&quot;images/ownscent.webp&quot;
+                         alt=&quot;Decorative glass perfume bottle on a beige background&quot;
+                         width=&quot;1600&quot; height=&quot;1600&quot; loading=&quot;lazy&quot;&gt;
+                    &lt;div class=&quot;edit-content&quot;&gt;
+                        &lt;p class=&quot;edit-category&quot;&gt;SCENT INSPIRATION&lt;/p&gt;
+                        &lt;h3&gt;Find Your Signature Scent&lt;/h3&gt;
+                        &lt;p&gt;Start with your favourite fragrance family and explore scents at your own pace.&lt;/p&gt;
+                        &lt;a href=&quot;#scent-finder&quot;&gt;Discover the steps →&lt;/a&gt;
+                    &lt;/div&gt;
+                &lt;/article&gt;
+
+                &lt;article class=&quot;edit-card&quot;&gt;
+                    &lt;img src=&quot;images/profilesfr.png&quot;
+                         alt=&quot;A collection of perfume bottles arranged on two shelves&quot;
+                         width=&quot;1200&quot; height=&quot;630&quot; loading=&quot;lazy&quot;&gt;
+                    &lt;div class=&quot;edit-content&quot;&gt;
+                        &lt;p class=&quot;edit-category&quot;&gt;PERFUME DISCOVERY&lt;/p&gt;
+                        &lt;h3&gt;Compare Fragrance Profiles&lt;/h3&gt;
+                        &lt;p&gt;Discover how popular perfumes differ in their families and character.&lt;/p&gt;
+                        &lt;a href=&quot;#comparison&quot;&gt;Compare the fragrances →&lt;/a&gt;
+                    &lt;/div&gt;
+                &lt;/article&gt;
+            &lt;/div&gt;
+        &lt;/section&gt;</code></pre><h3>CSS</h3><pre><code>#sillage-edit {
+    border-top: 1px solid #DED8D0;
+}
+
+.edit-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 26px;
+}
+
+.edit-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.edit-card img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    object-position: center;
+}
+
+.edit-card .signature-image {
+    object-position: center 65%;
+}
+
+.edit-content {
+    padding: 24px;
+}</code></pre><figure class="example-result">
+<img class="report-image" src="images/lab2/identifier.png" alt="Результат оформлення Sillage: identifier" loading="lazy">
+<figcaption>Розділ The Sillage Edit — приклад із поточного Sillage, відтворений у браузері. <a href="examples/lab2/identifier.html" target="_blank" rel="noopener">Відкрити окремо ↗</a></figcaption>
+</figure>
+</section>
+<section id="lab2-other"><h2>Інші селектори</h2>
+<p>Нижче наведено додаткові селектори, які застосовані до реальних елементів Sillage.</p>
+<h3>Дочірній селектор <code>&gt;</code></h3><p>Вибирає лише безпосередній абзац усередині текстового блоку першого екрана.</p><pre><code>&lt;div class=&quot;hero-content&quot;&gt;
+                &lt;h1&gt;Discover the World&lt;br&gt;of Fragrance&lt;/h1&gt;
+
+                &lt;p&gt;
+                    Explore perfumes, discover fragrance notes and share
+                    your impressions with a community of scent lovers.
+                &lt;/p&gt;</code></pre><pre><code>.hero-content &gt; p {
+    max-width: 720px;
+    margin: 0 0 30px;
+    color: var(--muted);
+    font-size: 17px;
+    line-height: 1.7;
+}</code></pre>
+<h3>Сусідній селектор <code>+</code></h3><p>Оформлює абзац, який розташований одразу після заголовка <code>h3</code> та має того самого батька.</p><pre><code>&lt;div class=&quot;edit-content&quot;&gt;
+    &lt;h3&gt;Explore Fragrance Families&lt;/h3&gt;
+    &lt;p&gt;From floral to woody, discover the families that help describe a fragrance.&lt;/p&gt;
+&lt;/div&gt;</code></pre><pre><code>.edit-card h3 + p {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.7;
+    margin: 14px 0 20px;
+}</code></pre>
+<h3>Атрибутний селектор</h3><p>Вибирає поле з атрибутом <code>type="search"</code> усередині пошукового блоку.</p><h3>HTML</h3><pre><code>&lt;form class=&quot;search-form&quot; id=&quot;search&quot; role=&quot;search&quot;&gt;
+                    &lt;label for=&quot;perfume-search&quot;&gt;Search fragrances&lt;/label&gt;
+                    &lt;div class=&quot;search-box&quot;&gt;
+                        &lt;input
+                            type=&quot;search&quot;
+                            id=&quot;perfume-search&quot;
+                            name=&quot;query&quot;
+                            placeholder=&quot;Search perfumes, brands, notes...&quot;
+                        &gt;
+                        &lt;button type=&quot;submit&quot;&gt;Search&lt;/button&gt;
+                    &lt;/div&gt;
+                &lt;/form&gt;</code></pre><h3>CSS</h3><pre><code>.search-box {
+    display: flex;
+    background: white;
+    border: 1px solid #E7E1DA;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.search-box input[type=&quot;search&quot;] {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    padding: 22px 28px;
+    font-family: inherit;
+    font-size: 14px;
+}
+
+.search-box button {
+    border: none;
+    background: var(--text);
+    color: white;
+    padding: 0 30px;
+    cursor: pointer;
+}</code></pre><figure class="example-result">
+<img class="report-image" src="images/lab2/attribute.png" alt="Результат оформлення Sillage: attribute" loading="lazy">
+<figcaption>Поле пошуку — приклад із поточного Sillage, відтворений у браузері. <a href="examples/lab2/attribute.html" target="_blank" rel="noopener">Відкрити окремо ↗</a></figcaption>
+</figure>
+<h3>Універсальний селектор <code>*</code></h3><p>Застосовує <code>border-box</code> до всіх елементів: задані ширина та висота включають внутрішні відступи й рамку.</p><pre><code>* {
+    box-sizing: border-box;
+}</code></pre>
+<h3>Селектор нащадка та псевдокласи</h3><p><code>.main-nav a</code> вибирає посилання всередині меню на будь-якому рівні вкладеності. <code>:hover</code> реагує на наведення, а <code>:focus-visible</code> позначає фокус під час навігації клавіатурою.</p><pre><code>.main-nav a {
+    font-size: 12px;
+    letter-spacing: 1px;
+}</code></pre><pre><code>.main-nav a:hover {
+    color: var(--accent);
+}</code></pre>
+</section>
+<section id="lab2-formatting"><h2>CSS: Шрифти, Текст, Таблиці, Фон, Контур, Списки</h2>
+<h3>Шрифти й текст</h3><p>Основний текст використовує Inter, заголовки — Cormorant Garamond. Задано розмір, насиченість, міжрядковий і міжлітерний інтервали.</p><pre><code>body {
+    margin: 0;
+    background: var(--background);
+    color: var(--text);
+    font-family: &#x27;Inter&#x27;, sans-serif;
+}</code></pre><pre><code>.hero h1 {
+    font-family: &#x27;Cormorant Garamond&#x27;, serif;
+    font-size: 68px;
+    font-weight: 500;
+    line-height: 1.05;
+    margin: 0 0 30px;
+}</code></pre><pre><code>.edit-category {
+    color: var(--muted);
+    font-size: 11px;
+    letter-spacing: 1px;
+    margin: 0 0 12px;
+}</code></pre>
+<h3>Фон і колір</h3><p>Палітра зберігається у CSS-змінних кореневого елемента. Фон сторінки світлий, текст темний, другорядні написи мають приглушений колір.</p><pre><code>:root {
+    --background: #F7F4EF;
+    --text: #25221F;
+    --muted: #625B54;
+    --accent: #B99475;
+}</code></pre><pre><code>.edit-intro {
+    color: var(--muted);
+    line-height: 1.7;
+    margin: 0 0 30px;
+}</code></pre>
+<h3>Контури</h3><p>Контур <code>outline</code> відображає фокус і не змінює розміри елемента, на відміну від рамки <code>border</code>. У прикладі пошуку вище можна натиснути Tab або перейти в поле, щоб перевірити фокус.</p><pre><code>a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+    outline: 2px solid var(--text);
+    outline-offset: -2px;
+}</code></pre><pre><code>.search-box:focus-within {
+    border-color: var(--text);
+}</code></pre>
+<h3>Таблиці</h3><p>Таблиця використовує <code>border-collapse</code>, <code>padding</code>, <code>border-bottom</code>, фон і вирівнювання тексту. Код і результат наведено в розділі <a href="#lab2-tags">«Селектори тегу»</a>. Контейнер дозволяє горизонтальне прокручування на вузькому екрані.</p><pre><code>.table-wrapper {
+    overflow-x: auto;
+    margin-top: 35px;
+}</code></pre>
+<h3>Багаторівневий список</h3><p>Перший рівень містить п’ять сімейств ароматів. Кожен його елемент <code>li</code> містить вкладений список <code>ul</code> із трьома прикладами нот. Для вкладеного рівня задано круглі маркери, відступ, колір, розмір шрифту та міжрядковий інтервал.</p><h3>HTML</h3><pre><code>&lt;section class=&quot;families&quot; id=&quot;notes&quot;&gt;
+            &lt;h2&gt;EXPLORE BY FRAGRANCE FAMILY&lt;/h2&gt;
+
+            &lt;ul class=&quot;family-list&quot;&gt;
+                &lt;li&gt;
+                    &lt;a href=&quot;#perfumes&quot; class=&quot;floral&quot;&gt;Floral&lt;/a&gt;
+                    &lt;ul&gt;
+                        &lt;li&gt;Rose&lt;/li&gt;
+                        &lt;li&gt;Jasmine&lt;/li&gt;
+                        &lt;li&gt;Peony&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/li&gt;
+                &lt;li&gt;
+                    &lt;a href=&quot;#perfumes&quot; class=&quot;gourmand&quot;&gt;Gourmand&lt;/a&gt;
+                    &lt;ul&gt;
+                        &lt;li&gt;Vanilla&lt;/li&gt;
+                        &lt;li&gt;Caramel&lt;/li&gt;
+                        &lt;li&gt;Chocolate&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/li&gt;
+                &lt;li&gt;
+                    &lt;a href=&quot;#perfumes&quot; class=&quot;woody&quot;&gt;Woody&lt;/a&gt;
+                    &lt;ul&gt;
+                        &lt;li&gt;Sandalwood&lt;/li&gt;
+                        &lt;li&gt;Cedar&lt;/li&gt;
+                        &lt;li&gt;Vetiver&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/li&gt;
+                &lt;li&gt;
+                    &lt;a href=&quot;#perfumes&quot; class=&quot;amber&quot;&gt;Amber&lt;/a&gt;
+                    &lt;ul&gt;
+                        &lt;li&gt;Benzoin&lt;/li&gt;
+                        &lt;li&gt;Labdanum&lt;/li&gt;
+                        &lt;li&gt;Vanilla&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/li&gt;
+                &lt;li&gt;
+                    &lt;a href=&quot;#perfumes&quot; class=&quot;fresh&quot;&gt;Fresh&lt;/a&gt;
+                    &lt;ul&gt;
+                        &lt;li&gt;Bergamot&lt;/li&gt;
+                        &lt;li&gt;Lemon&lt;/li&gt;
+                        &lt;li&gt;Green tea&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/section&gt;</code></pre><h3>CSS</h3><pre><code>.family-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    list-style: none;
+    padding: 0;
+}
+
+.family-list a {
+    display: block;
+    min-width: 140px;
+    padding: 14px 22px;
+    border-radius: 30px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.family-list ul {
+    list-style-type: circle;
+    list-style-position: outside;
+    margin: 18px 0 0;
+    padding-left: 28px;
+    text-align: left;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.floral { background: #D8A6AE; }
+
+.gourmand { background: #C4A4BB; }
+
+.woody { background: #B99475; }
+
+.amber { background: #D8B36A; }
+
+.fresh { background: #A9C9BE; }</code></pre><figure class="example-result">
+<img class="report-image" src="images/lab2/lists.png" alt="Результат оформлення Sillage: lists" loading="lazy">
+<figcaption>Сімейства ароматів і вкладені списки нот — приклад із поточного Sillage, відтворений у браузері. <a href="examples/lab2/lists.html" target="_blank" rel="noopener">Відкрити окремо ↗</a></figcaption>
+</figure>
+<h3>Зовнішні та внутрішні відступи</h3><p><code>margin</code> визначає відстань зовні елемента, <code>padding</code> — усередині. Картки мають внутрішні відступи, а заголовки й абзаци — зовнішні.</p><pre><code>.edit-content {
+    padding: 24px;
+}</code></pre><pre><code>.edit-card h3 + p {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.7;
+    margin: 14px 0 20px;
+}</code></pre>
+</section>
+<section id="lab2-layout"><h2>Оформлення головної сторінки</h2>
+<p>Перший екран перетворено на дві колонки: текст із пошуком ліворуч та фотографія Moschino праворуч. На екранах до 900 px вони розташовуються в одну колонку.</p><h3>HTML</h3><pre><code>&lt;section class=&quot;hero&quot;&gt;
+            &lt;div class=&quot;hero-content&quot;&gt;
+                &lt;h1&gt;Discover the World&lt;br&gt;of Fragrance&lt;/h1&gt;
+
+                &lt;p&gt;
+                    Explore perfumes, discover fragrance notes and share
+                    your impressions with a community of scent lovers.
+                &lt;/p&gt;
+
+                &lt;form class=&quot;search-form&quot; id=&quot;search&quot; role=&quot;search&quot;&gt;
+                    &lt;label for=&quot;perfume-search&quot;&gt;Search fragrances&lt;/label&gt;
+                    &lt;div class=&quot;search-box&quot;&gt;
+                        &lt;input
+                            type=&quot;search&quot;
+                            id=&quot;perfume-search&quot;
+                            name=&quot;query&quot;
+                            placeholder=&quot;Search perfumes, brands, notes...&quot;
+                        &gt;
+                        &lt;button type=&quot;submit&quot;&gt;Search&lt;/button&gt;
+                    &lt;/div&gt;
+                &lt;/form&gt;
+            &lt;/div&gt;
+            &lt;img class=&quot;hero-image&quot; src=&quot;images/toynew.jpg&quot;
+                 alt=&quot;Colourful Moschino perfume bottles shaped like teddy bears&quot;
+                 width=&quot;1650&quot; height=&quot;2048&quot;&gt;
+        &lt;/section&gt;</code></pre><h3>CSS</h3><pre><code>.hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 50px;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 55px 30px 65px;
+}
+
+.hero-image {
+    display: block;
+    width: 100%;
+    height: 480px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.hero h1 {
+    font-family: &#x27;Cormorant Garamond&#x27;, serif;
+    font-size: 68px;
+    font-weight: 500;
+    line-height: 1.05;
+    margin: 0 0 30px;
+}</code></pre><figure class="example-result">
+<img class="report-image" src="images/lab2/hero.png" alt="Результат оформлення Sillage: hero" loading="lazy">
+<figcaption>Перший екран Sillage — приклад із поточного Sillage, відтворений у браузері. <a href="examples/lab2/hero.html" target="_blank" rel="noopener">Відкрити окремо ↗</a></figcaption>
+</figure><h3>Адаптивність</h3><pre><code>@media (max-width: 900px) {
+    .hero {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .edit-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 550px) {
+    .edit-grid {
+        grid-template-columns: 1fr;
+    }
+}</code></pre><h3>The Sillage Edit і фотографії</h3><p>Після каталогу додано три редакційні картки з переходами до наявних розділів сайту. Фотографії мають єдине співвідношення сторін 16:9. Властивість <code>object-fit: cover</code> заповнює область із кадруванням без спотворення пропорцій. Для одиночного флакона кадр зміщено вниз за допомогою <code>object-position</code>.</p><pre><code>.edit-card img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    object-position: center;
+}</code></pre><pre><code>.edit-card .signature-image {
+    object-position: center 65%;
+}</code></pre><p>Для зображень задано змістовні альтернативні описи. Пошук залишається навчальною HTML-формою: обробку запиту не реалізовано.</p>
+</section>
+<section id="lab2-questions"><h2>Контрольні питання</h2>
+<h3>1. Для чого використовуються каскадні таблиці стилів?</h3><p>CSS задає вигляд HTML-документа: кольори, шрифти, відступи, розташування елементів та адаптивне оформлення. Спільний файл стилів дозволяє узгоджено оформлювати кілька сторінок.</p><h3>2. Які методи визначення стилів HTML-документа ви знаєте?</h3><p>Зовнішня таблиця через link, внутрішня таблиця в style та вбудовані стилі через атрибут style. Правило @import також дозволяє підключати зовнішні таблиці стилів.</p><h3>3. У чому різниця між каскадуванням і спадкуванням?</h3><p>Каскадування визначає, яке значення властивості перемагає серед застосовних оголошень: враховуються походження й важливість, шари, специфічність та порядок правил. Спадкування передає дочірньому елементу значення успадковуваної властивості батька, якщо власне значення не задано. Наприклад, колір і шрифт зазвичай успадковуються, а відступи — ні.</p><h3>4. Як оформлюються селектори тегу і класу?</h3><p>Селектор тегу записується назвою елемента, наприклад table { width: 100%; }. Селектор класу починається з крапки: .perfume-card { padding: 15px; }. У HTML клас задається атрибутом class=&quot;perfume-card&quot;.</p><h3>5. Для чого використовується ідентифікатор?</h3><p>Атрибут id позначає унікальний елемент документа, дозволяє створювати якірні переходи та вибирати елемент у CSS через #. Приклад у Sillage: #sillage-edit.</p><h3>6. Наведіть приклади оформлення текстових елементів.</h3><p>font-family задає гарнітуру, font-size — розмір, font-weight — насиченість, color — колір, line-height — міжрядковий інтервал, text-align — вирівнювання, letter-spacing — міжлітерний інтервал.</p>
+</section>
+<section id="lab2-conclusion"><h2>Висновки</h2>
+<p>Під час виконання лабораторної роботи №2 було вдосконалено CSS-оформлення навчального WEB-застосунку Sillage. На практиці використано селектори тегу, класу, ідентифікатора, нащадка, дочірній, сусідній, атрибутний та універсальний селектори.</p>
+<p>Опрацьовано оформлення шрифтів, тексту, фону, кольорів, рамок і контурів. Продемонстровано стилізацію таблиці порівняння, багаторівневого списку сімейств ароматів, зовнішні й внутрішні відступи.</p>
+<p>До першого екрана додано фотографію, створено розділ The Sillage Edit із трьома картками, налаштовано адаптивні сітки та кадрування фотографій. Для інтерактивних елементів передбачено видимий фокус.</p>
+<p>Результатом роботи стала узгоджено оформлена головна сторінка Sillage та звіт із прикладами HTML, CSS і відтворенням відповідних елементів у браузері.</p>
+</section>
+</main>
+</div>
+</body>
+</html>
